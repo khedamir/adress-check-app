@@ -1,10 +1,13 @@
 let adress = document.querySelectorAll('.adress')
 let adressBinary = document.querySelectorAll('.adress-binary')
 let maskBinary = document.querySelectorAll('.mask-binary')
-let elResult = document.querySelector('#result')
+let warning = document.querySelector('.warning')
+
+let modalTrue = document.querySelector('.modal__true')
+let modalFalse = document.querySelector('.modal__false')
+let backdrop = document.querySelector('.backdrop')
 
 
-let result = "Ответ правильный"   //вывод ответа
 let adressArr = []  // адрес узла в двоичной системе
 let adBin = '';
 let adressNetBinary = [] // сетевой адрес в двоичном формате
@@ -12,6 +15,7 @@ let adressNetBinary = [] // сетевой адрес в двоичном фор
 
 let arrAdressOne = [10, 172]
 
+// кнопка "Новая проблема"
 function generate(){
     let newAdress= []
     newAdress[0] = arrAdressOne[randomInteger(0,1)]
@@ -70,25 +74,27 @@ for (let i = 0; i < adressBinary.length; i++) {
 console.log(adressNetBinary)
 
 
-// проверка на правильность введенных значений 'кнопка "проверить"'
+// кнопка "проверить"
 function func() {
-    let result = "Ответ правильный"   //вывод ответа
     let netAdressBinary = document.querySelectorAll('.net-adress-binary')
     let netAdressDecimal = document.querySelectorAll('.net-adress-decimal')
 
     for(let i = 0; i < 4; i++){
         if(netAdressBinary[i].value === '' ||
             netAdressDecimal[i].value === ''){
-            result = 'Заполните поля';
+            warning.classList.add('active')
             break;
         }else if(netAdressBinary[i].value != adressNetBinary[i] ||
             netAdressDecimal[i].value != parseInt(adressNetBinary[i], 2)){
-            result = "Ответ не верный";
+            modalFalse.classList.add('active')
+            backdrop.classList.add('active')
             break;
+        }else{
+            modalTrue.classList.add('active')
+            backdrop.classList.add('active')
         }
     }
 
-    elResult.innerHTML = result;
 }
 
 
@@ -102,15 +108,12 @@ function clearInput(){
     }
 }
 
-
 function binaryLength(num) {
     while (num.length < 8) {
         num = '0' + num
     }
     return num
 }
-
-
 
 function randomInteger(min, max) {
     let rand = min - 0.5 + Math.random() * (max - min + 1);

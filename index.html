@@ -17,6 +17,8 @@
         </div>
     </header>
 
+    <p class="warning">Заполните все поля!!</p>
+
     <table>
         <tr>
             <td>Адрес узла</td>
@@ -65,7 +67,20 @@
     <button class="generate" onclick="generate()">Новое задание</button>
     <button class="clear" onclick="clearInput()">Очистить</button>
 
-    <p id="result"></p>
+    <div class="modal modal__true">
+        <h4>Верно</h4>
+        <p>Двоичный и десятичный сетевой адрес верны!</p>
+        <p>Нажмите кнопку "Новая проблема", чтобы продолжить.</p>
+        <a href="#">ОК</a>
+    </div>
+
+    <div class="backdrop"></div>
+    <div class="modal modal__false">
+        <h4>Не верно</h4>
+        <p>Двоичный и десятичный сетевой адрес не верны!</p>
+        <p>Повторите попытку.</p>
+        <a href="#">ОК</a>
+    </div>
 
     <script src="script.js"></script>
 </body>
