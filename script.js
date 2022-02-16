@@ -7,25 +7,26 @@ let modalTrue = document.querySelector('.modal__true')
 let modalFalse = document.querySelector('.modal__false')
 let backdrop = document.querySelector('.backdrop')
 
-let modalButton = document.querySelector('.modal-btn')
-
+let netAdressBinary = document.querySelectorAll('.net-adress-binary')
+let netAdressDecimal = document.querySelectorAll('.net-adress-decimal')
 
 let adressArr = []  // адрес узла в двоичной системе
 let adBin = '';
 let adressNetBinary = [] // сетевой адрес в двоичном формате
 
+debugger;
 
-let arrAdressOne = [10, 172]
+//перевод адреса узла в двоичную систему
+adressBinaryFn()
 
 
-function modalButtonClick(){
-    modalTrue.classList.remove('active')
-    modalFalse.classList.remove('active')
-    backdrop.classList.remove('active')
-}
+// вычисляет сетевой адрес по двоичному адресу узла и маске подсети
+getNetBinary()
+
 
 // кнопка "Новая проблема"
 function generate(){
+    let arrAdressOne = [10, 172]
     let newAdress= []
     newAdress[0] = arrAdressOne[randomInteger(0,1)]
     adress[0].innerHTML = newAdress[0]
@@ -44,49 +45,21 @@ function generate(){
         }
     }
     adressBinaryFn()
+    getNetBinary()
+    clearInput()
 }
 
 generate()
 
 
-//перевод адреса узла в двоичную систему
-function adressBinaryFn(){
-    for (let i = 0; i < adress.length; i++) {
-        num = (Number(adress[i].innerHTML)).toString(2)
-        adressBinary[i].innerHTML = binaryLength(num)
-    
-        //сохраняем в массив
-        adressArr[i] = binaryLength(num)
-    }
-}
-
-adressBinaryFn()
-
-
-
-
-
-// вычисляет сетевой адрес по двоичному адресу узла и маске подсети
-for (let i = 0; i < adressBinary.length; i++) {
-    let ad = (adressArr[i]).split('')
-    for (let y = 0; y < 8; y++) {
-        if (i === 3) {
-            adBin = adBin + ad[y] * 0 + ''
-        } else {
-            adBin = adBin + ad[y] * 1 + ''
-        }
-    }
-    // сохраняем в массив
-    adressNetBinary.push(adBin)
-    adBin = ''
-}
-console.log(adressNetBinary)
-
-
 // кнопка "проверить"
 function func() {
-    let netAdressBinary = document.querySelectorAll('.net-adress-binary')
-    let netAdressDecimal = document.querySelectorAll('.net-adress-decimal')
+    debugger;
+    // let netAdressBinary = document.querySelectorAll('.net-adress-binary')
+    // let netAdressDecimal = document.querySelectorAll('.net-adress-decimal')
+
+
+    // let adressNetBinary = [] // сетевой адрес в двоичном формате    
 
     for(let i = 0; i < 4; i++){
         if(netAdressBinary[i].value === '' ||
@@ -108,16 +81,66 @@ function func() {
 
 }
 
-
+// Кнопка очистить
 function clearInput(){
-    let netAdressBinary = document.querySelectorAll('.net-adress-binary')
-    let netAdressDecimal = document.querySelectorAll('.net-adress-decimal')
+    // let netAdressBinary = document.querySelectorAll('.net-adress-binary')
+    // let netAdressDecimal = document.querySelectorAll('.net-adress-decimal')
 
     for(let i =0; i < 4; i++){
         netAdressBinary[i].value = ''
         netAdressDecimal[i].value = ''
     }
 }
+
+// Кнопка ОК
+function modalButtonClick(){
+    modalTrue.classList.remove('active')
+    modalFalse.classList.remove('active')
+    backdrop.classList.remove('active')
+}
+
+
+
+//перевод адреса узла в двоичную систему
+function adressBinaryFn(){
+    debugger;
+    // let adress = document.querySelectorAll('.adress')
+    // let adressBinary = document.querySelectorAll('.adress-binary')
+    // let adressArr = []  // адрес узла в двоичной системе
+
+    for (let i = 0; i < adress.length; i++) {
+        num = (Number(adress[i].innerHTML)).toString(2)
+        adressBinary[i].innerHTML = binaryLength(num)
+    
+        //сохраняем в массив
+        adressArr[i] = binaryLength(num)
+    }
+}
+
+// вычисляет сетевой адрес по двоичному адресу узла и маске подсети
+function getNetBinary(){
+    debugger;
+    // let adressBinary = document.querySelectorAll('.adress-binary')
+    // let adressArr = []  // адрес узла в двоичной системе
+    let adBin = '';
+    // let adressNetBinary = [] // сетевой адрес в двоичном формате
+    
+    for (let i = 0; i < adressBinary.length; i++) {
+        let ad = (adressArr[i]).split('')
+        for (let y = 0; y < 8; y++) {
+            if (i === 3) {
+                adBin = adBin + ad[y] * 0 + ''
+            } else {
+                adBin = adBin + ad[y] * 1 + ''
+            }
+        }
+        // сохраняем в массив
+        adressNetBinary[i] = adBin
+        adBin = ''
+    }
+}
+
+
 
 function binaryLength(num) {
     while (num.length < 8) {
