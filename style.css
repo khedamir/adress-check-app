@@ -5,6 +5,7 @@
 body{
     margin: 0;
     padding: 32px 76px;
+    width: 1200px;
 }
 
 table{
@@ -84,7 +85,6 @@ button{
     color: #fff;
     text-decoration: none;
     padding: 8px 12px;
-    /* background: rgb(126, 190, 255); */
     display: inline-block;
     margin: 6px 0;
 }

@@ -50,17 +50,17 @@
         </tr>
         <tr>
             <td>Сетевой адрес в двоичном формате</td>
-            <td><input class="net-adress-binary" type="text"></td>
-            <td><input class="net-adress-binary" type="text"></td>
-            <td><input class="net-adress-binary" type="text"></td>
-            <td><input class="net-adress-binary" type="text"></td>
+            <td><input maxlength="8" class="net-adress-binary" type="text"></td>
+            <td><input maxlength="8" class="net-adress-binary" type="text"></td>
+            <td><input maxlength="8" class="net-adress-binary" type="text"></td>
+            <td><input maxlength="8" class="net-adress-binary" type="text"></td>
         </tr>
         <tr>
             <td>Сетевой адрес в десятичном формате</td>
-            <td><input class="net-adress-decimal" type="text"></td>
-            <td><input class="net-adress-decimal" type="text"></td>
-            <td><input class="net-adress-decimal" type="text"></td>
-            <td><input class="net-adress-decimal" type="text"></td>
+            <td><input maxlength="3" class="net-adress-decimal" type="text"></td>
+            <td><input maxlength="3" class="net-adress-decimal" type="text"></td>
+            <td><input maxlength="3" class="net-adress-decimal" type="text"></td>
+            <td><input maxlength="3" class="net-adress-decimal" type="text"></td>
         </tr>
     </table>
     <button class="check" onclick="func()">Проверить</button>
@@ -71,7 +71,7 @@
         <h4>Верно</h4>
         <p>Двоичный и десятичный сетевой адрес верны!</p>
         <p>Нажмите кнопку "Новая проблема", чтобы продолжить.</p>
-        <a href="#">ОК</a>
+        <a class="modal-btn" onclick="modalButtonClick()" href="#">ОК</a>
     </div>
 
     <div class="backdrop"></div>
@@ -79,7 +79,7 @@
         <h4>Не верно</h4>
         <p>Двоичный и десятичный сетевой адрес не верны!</p>
         <p>Повторите попытку.</p>
-        <a href="#">ОК</a>
+        <a class="modal-btn" onclick="modalButtonClick()" href="#">ОК</a>
     </div>
 
     <script src="script.js"></script>

@@ -7,6 +7,8 @@ let modalTrue = document.querySelector('.modal__true')
 let modalFalse = document.querySelector('.modal__false')
 let backdrop = document.querySelector('.backdrop')
 
+let modalButton = document.querySelector('.modal-btn')
+
 
 let adressArr = []  // адрес узла в двоичной системе
 let adBin = '';
@@ -14,6 +16,13 @@ let adressNetBinary = [] // сетевой адрес в двоичном фор
 
 
 let arrAdressOne = [10, 172]
+
+
+function modalButtonClick(){
+    modalTrue.classList.remove('active')
+    modalFalse.classList.remove('active')
+    backdrop.classList.remove('active')
+}
 
 // кнопка "Новая проблема"
 function generate(){
@@ -86,10 +95,12 @@ function func() {
             break;
         }else if(netAdressBinary[i].value != adressNetBinary[i] ||
             netAdressDecimal[i].value != parseInt(adressNetBinary[i], 2)){
+            warning.classList.remove('active')
             modalFalse.classList.add('active')
             backdrop.classList.add('active')
             break;
         }else{
+            warning.classList.remove('active')
             modalTrue.classList.add('active')
             backdrop.classList.add('active')
         }
