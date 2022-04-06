@@ -1,16 +1,21 @@
 let adress = document.querySelectorAll('.adress')
 let adressBinary = document.querySelectorAll('.adress-binary')
+
+let mask = document.querySelectorAll('.mask')
 let maskBinary = document.querySelectorAll('.mask-binary')
+
 let warning = document.querySelector('.warning')
 
 let modalTrue = document.querySelector('.modal__true')
 let modalFalse = document.querySelector('.modal__false')
+
 let backdrop = document.querySelector('.backdrop')
 
 let netAdressBinary = document.querySelectorAll('.net-adress-binary')
 let netAdressDecimal = document.querySelectorAll('.net-adress-decimal')
 
 let adressArr = []  // адрес узла в двоичной системе
+
 let adBin = '';
 let adressNetBinary = [] // сетевой адрес в двоичном формате
 
@@ -19,24 +24,9 @@ generate()
 //сгенерировать адреса
 // кнопка "Новая проблема"
 function generate(){
-    let arrAdressOne = [10, 172]
-    let newAdress= []
-    newAdress[0] = arrAdressOne[randomInteger(0,1)]
-    adress[0].innerHTML = newAdress[0]
-
-    if(newAdress[0] == 10){
-        for(let i = 1; i < 4; i++){
-            newAdress[i] = randomInteger(0, 255)
-            adress[i].innerHTML = newAdress[i]
-        }
-    }else if(newAdress[0] == 172){
-        newAdress[1] = 16;
-        adress[1].innerHTML = newAdress[1]
-        for(let i = 2; i < 4; i++){
-            newAdress[i] = randomInteger(0, 255)
-            adress[i].innerHTML = newAdress[i]
-        }
-    }
+    generateAdress()
+    generateMask()
+    maskBinaryFn()
     adressBinaryFn()
     getNetBinary()
     clearInput()
@@ -45,7 +35,7 @@ function generate(){
 
 
 // кнопка "проверить"
-function func() { 
+function check() { 
     for(let i = 0; i < 4; i++){
         if(netAdressBinary[i].value === '' ||
             netAdressDecimal[i].value === ''){
@@ -82,6 +72,59 @@ function modalButtonClick(){
     backdrop.classList.remove('active')
 }
 
+// генерация маски подсети
+function generateMask(){
+    let a = [128, 192, 224, 240, 252, 254, 255]
+    let b = [0, 224, 248, 192, 240, 252]
+
+    let newMask = []
+
+    for(let i = 0; i < 4; i++){
+        if(i == 2){
+            newMask[i] = a[randomInteger(0, a.length-1)];
+        }else if(i == 3){
+            newMask[i] = b[randomInteger(0, b.length-1)]
+        }else{
+            newMask[i] = 255
+        }
+        mask[i].innerHTML = newMask[i]
+    }
+}
+
+
+//перевод маски подсети в двоичную систему
+function maskBinaryFn(){
+    for (let i = 0; i < mask.length; i++) {
+        num = getBinary(Number(mask[i].innerHTML))
+        maskBinary[i].innerHTML = num
+        //сохраняем в массив
+        // adressArr[i] = num
+    }
+}
+
+
+
+// генерация адреса узла
+function generateAdress(){
+    let arrAdressOne = [10, 172]
+    let newAdress= []
+    newAdress[0] = arrAdressOne[randomInteger(0,1)]
+    adress[0].innerHTML = newAdress[0]
+
+    if(newAdress[0] == 10){
+        for(let i = 1; i < 4; i++){
+            newAdress[i] = randomInteger(0, 255)
+            adress[i].innerHTML = newAdress[i]
+        }
+    }else if(newAdress[0] == 172){
+        newAdress[1] = 16;
+        adress[1].innerHTML = newAdress[1]
+        for(let i = 2; i < 4; i++){
+            newAdress[i] = randomInteger(0, 255)
+            adress[i].innerHTML = newAdress[i]
+        }
+    }
+}
 
 
 
