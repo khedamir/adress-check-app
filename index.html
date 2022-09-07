@@ -10,62 +10,68 @@
 <body>
     <header>
         <h1 >Упражнение - Логическое И для определения сетевого адреса</h1>
-        <hr>
+        <!-- <hr> -->
+
+    </header>
+
+
+    <main>
         <div class="description">
             <h3>Инструкция: </h3>
             <p>Для оперделения сетевого адреса (в двоичном и десятичном форматах) используйте операцию И.</p>
         </div>
-    </header>
+        <p class="warning">Заполните все поля!!</p>
+        <table>
+            <tr>
+                <td>Адрес узла</td>
+                <td class="adress">10</td>
+                <td class="adress">173</td>
+                <td class="adress">19</td>
+                <td class="adress">79</td>
+            </tr>
+            <tr>
+                <td>Маска подсети</td>
+                <td class="mask">255</td>
+                <td class="mask">255</td>
+                <td class="mask">255</td>
+                <td class="mask">0</td>
+            </tr>
+            <tr>
+                <td>Адрес узла в двоичном формате</td>
+                <td class="adress-binary"></td>
+                <td class="adress-binary"></td>
+                <td class="adress-binary"></td>
+                <td class="adress-binary"></td>
+            </tr>
+            <tr>
+                <td>Маска подсети в двоичном формате</td>
+                <td class="mask-binary">11111111</td>
+                <td class="mask-binary">11111111</td>
+                <td class="mask-binary">11111111</td>
+                <td class="mask-binary">00000000</td>
+            </tr>
+            <tr>
+                <td>Сетевой адрес в двоичном формате</td>
+                <td><input maxlength="8" class="net-adress-binary" type="text"></td>
+                <td><input maxlength="8" class="net-adress-binary" type="text"></td>
+                <td><input maxlength="8" class="net-adress-binary" type="text"></td>
+                <td><input maxlength="8" class="net-adress-binary" type="text"></td>
+            </tr>
+            <tr>
+                <td>Сетевой адрес в десятичном формате</td>
+                <td><input maxlength="3" class="net-adress-decimal" type="text"></td>
+                <td><input maxlength="3" class="net-adress-decimal" type="text"></td>
+                <td><input maxlength="3" class="net-adress-decimal" type="text"></td>
+                <td><input maxlength="3" class="net-adress-decimal" type="text"></td>
+            </tr>
+        </table>
+        <div class="buttons">
+            <button class="button check" onclick="check()">Проверить</button>
+            <button class="button generate" onclick="generate()">Новое задание</button>
+            <button class="button clear" onclick="clearInput()">Очистить</button>
+        </div>
+    </main>
 
-    <p class="warning">Заполните все поля!!</p>
-
-    <table>
-        <tr>
-            <td>Адрес узла</td>
-            <td class="adress">10</td>
-            <td class="adress">173</td>
-            <td class="adress">19</td>
-            <td class="adress">79</td>
-        </tr>
-        <tr>
-            <td>Маска подсети</td>
-            <td class="mask">255</td>
-            <td class="mask">255</td>
-            <td class="mask">255</td>
-            <td class="mask">0</td>
-        </tr>
-        <tr>
-            <td>Адрес узла в двоичном формате</td>
-            <td class="adress-binary"></td>
-            <td class="adress-binary"></td>
-            <td class="adress-binary"></td>
-            <td class="adress-binary"></td>
-        </tr>
-        <tr>
-            <td>Маска подсети в двоичном формате</td>
-            <td class="mask-binary">11111111</td>
-            <td class="mask-binary">11111111</td>
-            <td class="mask-binary">11111111</td>
-            <td class="mask-binary">00000000</td>
-        </tr>
-        <tr>
-            <td>Сетевой адрес в двоичном формате</td>
-            <td><input maxlength="8" class="net-adress-binary" type="text"></td>
-            <td><input maxlength="8" class="net-adress-binary" type="text"></td>
-            <td><input maxlength="8" class="net-adress-binary" type="text"></td>
-            <td><input maxlength="8" class="net-adress-binary" type="text"></td>
-        </tr>
-        <tr>
-            <td>Сетевой адрес в десятичном формате</td>
-            <td><input maxlength="3" class="net-adress-decimal" type="text"></td>
-            <td><input maxlength="3" class="net-adress-decimal" type="text"></td>
-            <td><input maxlength="3" class="net-adress-decimal" type="text"></td>
-            <td><input maxlength="3" class="net-adress-decimal" type="text"></td>
-        </tr>
-    </table>
-    <button class="button check" onclick="check()">Проверить</button>
-    <button class="button generate" onclick="generate()">Новое задание</button>
-    <button class="button clear" onclick="clearInput()">Очистить</button>
 
     <div class="modal modal__true">
         <h4>Верно</h4>
